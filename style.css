@@ -1,6 +1,6 @@
 /*
 Theme Name: amyunus
-Theme URI: http://underscores.me/
+Theme URI: http://www.amyunus.com/themes/amyunus-wordpress-theme/
 Author: amyunus
 Author URI: http://www.amyunus.com
 Description: AMYunus personal website theme
@@ -581,6 +581,7 @@ object {
 	}
 	.main-navigation li {
 		padding: 8px 16px;
+		background-color: #E9E9E9;
 	}
 	.main-navigation li:last-child {
 		border-right: none;
@@ -590,11 +591,11 @@ object {
 	}
 	.main-navigation {
 	}
-	.menu ul {
+	.site-navigation ul {
 		margin: 0 auto;
 		width: 640px;
 	}
-	.menu ul ul li {
+	.site-navigation ul ul li {
 		display: none;
 	}
 
@@ -667,6 +668,9 @@ object {
 		font-size: 12px;
 		line-height: 18px;
 	}
+	.page-title {
+		font-weight: bold;
+	}
 
 	/* Comments */
 	.comment-notes,
@@ -729,6 +733,11 @@ object {
 	.comment-meta {
 		font-size: 12px;
 		line-height: 18px;
+	}
+
+	/* Widget */
+	.widget-title {
+		font-weight: bold;
 	}
 
 	/* Footer */
