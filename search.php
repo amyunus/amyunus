@@ -11,6 +11,10 @@ get_header(); ?>
 		<section id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 
+			<?php if ( function_exists('yoast_breadcrumb') ) {
+			yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+			} ?>
+
 			<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">

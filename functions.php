@@ -97,8 +97,6 @@ add_action( 'widgets_init', 'amyunus_widgets_init' );
 function amyunus_scripts() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-	//wp_enqueue_style( 'webfonts', 'http://fonts.googleapis.com/css?family=Ubuntu:400,700' );
-
 	wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -108,8 +106,52 @@ function amyunus_scripts() {
 	if ( is_singular() && wp_attachment_is_image() ) {
 		wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
 	}
+
+	// Infinite scroll features
+	if ( ! is_singular() ) {
+		wp_enqueue_script( 'infinite_scroll',  get_template_directory_uri() . '/js/jquery.infinitescroll.min.js', array('jquery'),null,true );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'amyunus_scripts' );
+
+/**
+ * Implement the Infinite Scroll feature
+ */
+function custom_infinite_scroll_js() {
+	if( ! is_singular() ) { ?>
+	<script>
+	var infinite_scroll = {
+		loading: {
+			img: "<?php echo get_template_directory_uri(); ?>/img/ajax-loader.gif",
+			msgText: "<?php _e( 'Loading the next set of posts...', 'custom' ); ?>",
+			finishedMsg: "<?php _e( 'All posts loaded.', 'custom' ); ?>"
+		},
+		"nextSelector":"#nav-below .nav-previous a",
+		"navSelector":"#nav-below",
+		"itemSelector":"article",
+		"contentSelector":"#content"
+	};
+	jQuery( infinite_scroll.contentSelector ).infinitescroll( infinite_scroll );
+	</script>
+	<?php
+	}
+}
+add_action( 'wp_footer', 'custom_infinite_scroll_js',100 );
+
+/**
+ * If we go beyond the last page and request a page that doesn't exist,
+ * force WordPress to return a 404.
+ * See http://core.trac.wordpress.org/ticket/15770
+ */
+function custom_paged_404_fix( ) {
+	global $wp_query;
+	if ( is_404() || !is_paged() || 0 != count( $wp_query->posts ) )
+		return;
+	$wp_query->set_404();
+	status_header( 404 );
+	nocache_headers();
+}
+add_action( 'wp', 'custom_paged_404_fix' );
 
 /**
  * Implement the Custom Header feature
