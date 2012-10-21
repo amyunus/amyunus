@@ -4,7 +4,7 @@ Theme URI: http://www.amyunus.com/themes/amyunus-wordpress-theme/
 Author: amyunus
 Author URI: http://www.amyunus.com
 Description: AMYunus personal website theme
-Version: 1.0
+Version: 1.2.1
 License: GNU General Public License
 License URI: license.txt
 Tags: light, one column
@@ -564,9 +564,13 @@ object {
 	/* Header */
 	.site-header {
 		font-size: 20px;
+		background-color: #E9E9E9;
 	}
 	.site-header a {
 		color: #404040;
+	}
+	.site-header a:hover {
+		color: #F7951D;
 	}
 	hgroup {
 		padding: 36px 0;
@@ -577,19 +581,16 @@ object {
 		font-weight: bold;
 	}
 
+	.main-navigation {
+		
+	}
 	.main-navigation ul {
 	}
 	.main-navigation li {
 		padding: 8px 16px;
-		background-color: #E9E9E9;
-	}
-	.main-navigation li:last-child {
-		border-right: none;
 	}
 	.main-navigation a:hover {
 		color: #F7951D;
-	}
-	.main-navigation {
 	}
 	.site-navigation ul {
 		margin: 0 auto;
@@ -765,7 +766,6 @@ object {
 		text-align: center;
 		height: 32px;
 		background-color: #F7951D;
-		border-top: 3px solid #D8D8D8;
 	}
 	.site-footer a {
 		color: #F9F9F9;
